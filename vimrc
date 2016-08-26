@@ -49,6 +49,17 @@ Bundle 'tomasr/molokai'
 " Vundle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype on
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" my variables
+"
+"
+let mapleader = "-"
+let maplocalleader = ","
+
+let g:mIsIDE=0
+"
+" my variables
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " header
@@ -58,10 +69,6 @@ run plugin/my.vim
 syntax on                  " syntax hightlighting.
 
 filetype plugin on
-
-let mapleader = "-"
-let maplocalleader = ","
-
 "
 " header
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,8 +137,8 @@ set sessionoptions+=sesdir
 " noremap
 "
 "
-noremap <F1> <esc>
-noremap <F2> <esc>
+noremap <F1> <esc>:vi ~/.vim/plugin/my.vim<CR>
+noremap <F2> <esc>:system( "mkdir -R ./123" )
 noremap <F3> <esc>
 noremap <F4> <esc>
 noremap <F5> <esc>
@@ -200,7 +207,9 @@ vnoremap jk <esc>
 augroup Global_settings
 	autocmd!
     autocmd InsertLeave * se nocul
-    autocmd InsertEnter * se cul        
+    autocmd InsertEnter * se cul
+
+    autocmd VimEnter * execute ":call InitAction()"
 augroup END
 
 augroup SetMyFileType
@@ -218,8 +227,11 @@ augroup C_and_CPP_Group
     autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
 
     autocmd FileType c,cpp :iabbrev if if(){<CR>;<CR>}<esc>kk0f(a
+    autocmd FileType c,cpp :iabbrev if( if(){<CR>;<CR>}<esc>kk0f(a
     autocmd FileType c,cpp :iabbrev for for(){<CR>;<CR>}<esc>kk0f(a
+    autocmd FileType c,cpp :iabbrev for( for(){<CR>;<CR>}<esc>kk0f(a
     autocmd FileType c,cpp :iabbrev while while(){<CR>;<CR>}<esc>kk0f(a
+    autocmd FileType c,cpp :iabbrev while( while(){<CR>;<CR>}<esc>kk0f(a
     autocmd FileType c,cpp :iabbrev printf printf("");<esc>0f"a
     autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
     autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main

@@ -4,6 +4,18 @@ endif
 let loaded_myvim = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mIsIDE = 0
+function! IsIDE()
+	let absolutePath=getcwd()
+	let path = finddir( "src", absolutePath )
+	if ( path != "" )
+		execute "! echo \"".path"\" >> temp.txt "
+		g:mIsIDE = 1
+	endif
+	return g:mIsIDE
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! SetTitle()
     if &filetype == 'cpp'
         call setline( 1, "/**********************************************************" )
@@ -46,20 +58,17 @@ function! CompileRun()
     endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:AutoSessionFile="project.vim"
-let g:OriginalPWD=getcwd()
-function! LeaveHandle()
-    execute "mksession! ".g:OriginalPWD."/".g:AutoSessionFile
+function! InitAction()
+	call IsIDE()
+	if ( g:mIsIDE != 0 )
+		call AddCscopeInfo()
+	endif
 endfunction
 
-function! EnterHandle()
-    execute "source ".g:AutoSessionFile
+function! AddCscopeInfo()
+	let absolutePath=getcwd()
+	execute "! cscope -Rbq -I ./src 2 >> error.cs.log"
+	call cs add absolutePath/cscope.out
 endfunction
 
-if filereadable(g:AutoSessionFile)
-    if argc() == 0
-        autocmd VimEnter * call EnterHandle()
-        autocmd VimLeave * call LeaveHandle()
-    endif
-endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
