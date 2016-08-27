@@ -4,18 +4,6 @@ endif
 let loaded_myvim = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:mIsIDE = 0
-function! IsIDE()
-	let absolutePath=getcwd()
-	let path = finddir( "src", absolutePath )
-	if ( path != "" )
-		execute "! echo \"".path"\" >> temp.txt "
-		g:mIsIDE = 1
-	endif
-	return g:mIsIDE
-endfunction
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! SetTitle()
     if &filetype == 'cpp'
         call setline( 1, "/**********************************************************" )
@@ -58,12 +46,6 @@ function! CompileRun()
     endif
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InitAction()
-	call IsIDE()
-	if ( g:mIsIDE != 0 )
-		call AddCscopeInfo()
-	endif
-endfunction
 
 function! AddCscopeInfo()
 	let absolutePath=getcwd()
