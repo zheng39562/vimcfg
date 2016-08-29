@@ -4,27 +4,57 @@ endif
 let loaded_myvim = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! Initialization()
+	if( IsIDE() == 1 ) 
+		call UpdateCscopeInfo()
+	endif
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:mIsIDE = 0
+function! IsIDE()
+	let absolutePath=getcwd()
+
+	let sourceNameList = [ "src", "source" ]
+	for sourceName in sourceNameList
+		let findDirName = finddir( sourceName, absolutePath )
+		if sourceName == findDirName 
+			let g:mIsIDE = 1	
+		endif
+	endfo
+
+	return g:mIsIDE
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! SetTitle()
+	let titleList = [ ]
+	call add( titleList, " \\!file ".expand("%:t") )
+	call add( titleList, " \\!brief" )
+	call add( titleList, " \\!note	×¢ÒâÊÂÏî£º " )
+	call add( titleList, "			1,ÀàÖÐµÄ³ÉÔ±º¯ÊýÖÐµÄÍ¬Ãû²ÎÊýµÄº¬ÒåÍêÈ«ÏàÍ¬¡£½ö»á×¢ÊÍÆäÖÐÒ»¸öº¯Êý£¬ÆäËûº¯ÊýÔò²»ÔÙÖØ¸´×¢ÊÍ¡£ÖØÃûµÄ²ÎÊýÒâÒå²»Í¬Ê±£¬»á¶ÀÁ¢×¢½â¡£ " )
+	call add( titleList, "			2,µÚ1ÌõµÄ¹æÔòÍ¬ÑùÊÊÓÃÓÚ·µ»ØÖµµÄº¬Òå¡£ " )
+	call add( titleList, "" )
+	call add( titleList, "\\!version " )
+	call add( titleList, "* \\!author zheng39562@163.com" )
+
     if &filetype == 'cpp'
-        call setline( 1, "/**********************************************************" )
-        call append( line("."), " * \\file ".expand("%:t") )
-        call append( line(".")+1, " * \\brief " )
-        call append( line(".")+2, " * \\note	æ³¨æ„äº‹é¡¹ï¼š" )
-        call append( line(".")+3, " *			1,ç±»ä¸­çš„æˆå‘˜å‡½æ•°ä¸­çš„åŒåå‚æ•°çš„å«ä¹‰å®Œå…¨ç›¸åŒã€‚ä»…ä¼šæ³¨é‡Šå…¶ä¸­ä¸€ä¸ªå‡½æ•°ï¼Œå…¶ä»–å‡½æ•°åˆ™ä¸å†é‡å¤æ³¨é‡Šã€‚é‡åçš„å‚æ•°æ„ä¹‰ä¸åŒæ—¶ï¼Œä¼šç‹¬ç«‹æ³¨è§£ã€‚" )
-        call append( line(".")+4, " *			2,ç¬¬1æ¡çš„è§„åˆ™åŒæ ·é€‚ç”¨äºŽè¿”å›žå€¼çš„å«ä¹‰ã€‚" )
-        call append( line(".")+5, " * " )
-        call append( line(".")+6, " * \\version " )
-        call append( line(".")+7, " * \\author zheng39562@163.com" )
-        call append( line(".")+8, "**********************************************************/" )
+		let curList = 1
+		call setline( curList, "/**********************************************************" )
+
+		for title in titleList 
+			let curList = curList + 1
+			call setline( curList, " * ".title )
+		endfor 
+		call setline( curList, "**********************************************************/" )
     else
-        echom "filetype is ".&filetype;
+        echom "filetype is ".&filetype
     endif
 
     execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineHeadFile()
-    call setline( 11, "#ifndef _".expand("%:t:r")."_H" )
+	call setline( 1, "#ifndef _".expand("%:t:r")."_H" )
     call append( line(".")+1, "#define _".expand("%:t:r")."_H" )
     call append( line(".")+2, "#endif " )
     call append( line(".")+3, "" )
@@ -33,24 +63,13 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineCppFile()
     call setline( 11, "#include \"".expand("%:t:r").".h\"" )
-    execute ":normal! G$"
+    silent execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CompileRun()
-    execute "w"
-
-    if &filetype == 'cpp'
-        execute ""
-    else
-        echom "Unknow filetype.You can add new filetype"
-    endif
-endfunction
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-function! AddCscopeInfo()
+function! UpdateCscopeInfo()
 	let absolutePath=getcwd()
-	execute "! cscope -Rbq -I ./src 2 >> error.cs.log"
-	call cs add absolutePath/cscope.out
+	silent! execute "! cscope -Rbq -I ".absolutePath."/src 2>>error.cs.log" 
+	silent! execute "cs add ".absolutePath."/cscope.out"
 endfunction
 
 

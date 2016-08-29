@@ -83,11 +83,6 @@ set hls
 set incsearch
 set foldenable               
 
-if version >= 603
-    set helplang=en
-    set encoding=utf-8
-endif
-
 " shiftwidth,tab,...
 set shiftwidth=4
 set softtabstop=4
@@ -96,8 +91,6 @@ set tabstop=4
 " encodings
 set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set encoding=cp936
-set langmenu=zh_CN.UTF-8
-language message zh_CN.UTF-8
 
 " statusline: file name,type,path and number of line.
 set statusline =FileName:%f\ \ 
@@ -209,7 +202,7 @@ augroup Global_settings
     autocmd InsertLeave * se nocul
     autocmd InsertEnter * se cul
 
-    autocmd VimEnter * execute ":call InitAction()"
+	autocmd VimEnter * call Initialization()
 augroup END
 
 augroup SetMyFileType
