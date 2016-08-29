@@ -27,7 +27,7 @@ call vundle#rc()
 Bundle 'zheng39562/vimplugin'
 Bundle 'L9'  
 Bundle 'A.vim'
-Bundle 'minibufexplorerpp'
+"Bundle 'minibufexplorerpp'
 Bundle 'kien/ctrlp.vim'
 "Plugin 'tacahiroy/ctrlp-funky'
 "Plugin 'itchyny/lightline.vim'
