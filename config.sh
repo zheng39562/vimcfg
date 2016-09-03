@@ -4,7 +4,12 @@ if [ -f ~/.vim ] ; then
     mkdir ~/.vim
 fi
 
-mv ./vimrc ~/.vimrc
+if [ -f ~/.vim/plugin ] ; then 
+    mkdir -p ~/.vim/plugin
+fi
+
+cp ./vimrc ~/.vimrc
+cp ./my_plugin/my.vim ~/.vim/plugin/
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 exit;
