@@ -90,7 +90,11 @@ set tabstop=4
 
 " encodings
 set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set encoding=cp936
+" 需要使用GBK时 使用cp936. 但通常而言不推荐。
+"set encoding=cp936
+set encoding=utf-8
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
 
 " statusline: file name,type,path and number of line.
 set statusline =FileName:%f\ \ 
@@ -130,8 +134,8 @@ set sessionoptions+=sesdir
 " noremap
 "
 "
-noremap <F1> <esc>:vi ~/.vim/plugin/my.vim<CR>
-noremap <F2> <esc>:system( "mkdir -R ./123" )
+noremap <F1> <esc>
+noremap <F2> <esc>
 noremap <F3> <esc>
 noremap <F4> <esc>
 noremap <F5> <esc>
@@ -156,6 +160,11 @@ nnoremap <leader>/ :nohl<CR>
 nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
 nnoremap <leader>c <esc>viwy
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 
 nnoremap <leader>re <esc>viwpviwy
 nnoremap <leader>p <esc>p
