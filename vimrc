@@ -228,13 +228,13 @@ augroup C_and_CPP_Group
     autocmd BufNewFile *.hpp,*.h execute ":call DefineHeadFile()"
     autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
 
-    autocmd FileType c,cpp :iabbrev if if(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev if( if(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev for for(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev for( for(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev while while(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev while( while(){<CR>;<CR>}<esc>kk0f(a
-    autocmd FileType c,cpp :iabbrev printf printf("");<esc>0f"a
+    "autocmd FileType c,cpp :iabbrev if if(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev if( if(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev for for(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev for( for(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev while while(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev while( while(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev printf printf("");<esc>0f"a
     autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
     autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main
 augroup END	
