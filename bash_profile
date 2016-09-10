@@ -1,5 +1,10 @@
-
 source ~/.bashrc
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
 
 export LC_ALL="zh_CN.UTF-8"
 export LANG="zh_CN.UTF-8"
@@ -11,3 +16,4 @@ export EDITOR="vim"
 ulimit -c unlimited
 
 echo "Initialize bash_profile"
+echo bash_profile Initialization!
