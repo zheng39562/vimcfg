@@ -42,7 +42,7 @@ Bundle 'scrooloose/nerdtree'
 "Plugin 'tomtom/tlib_vim'
 "Plugin 'garbas/vim-snipmate'
 "Plugin 'vim-scripts/OmniCppComplete'
-Bundle 'tomasr/molokai'
+Bundle 'vim-scripts/molokai'
 "Plugin 'vim-scripts/vcscommand.vim'
 
 "
