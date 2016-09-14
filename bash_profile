@@ -8,7 +8,7 @@ fi
 
 trash()
 {
-	mv $@ ~/.local/share/Trash/files  #注意，这里可以自行定义。长时间删除文件后，记得清空此文件夹。
+	mv $@ ~/trash  #注意，这里可以自行定义。长时间删除文件后，记得清空此文件夹。
 }
 
 export LC_ALL="zh_CN.UTF-8"
