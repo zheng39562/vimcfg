@@ -74,4 +74,8 @@ function! UpdateCscopeInfo()
 	silent! execute "cs add ".absolutePath."/cscope.out"
 endfunction
 
+function! UpdateTags()
+	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl tags "
+endfunction
+
 

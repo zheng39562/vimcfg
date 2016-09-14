@@ -134,10 +134,10 @@ set sessionoptions+=sesdir
 " noremap
 "
 "
-noremap <F1> <esc>
+noremap <F1> <esc>:vi ~/.vim/plugin/my.vim<CR>
 noremap <F2> <esc>
 noremap <F3> <esc>
-noremap <F4> <esc>
+noremap <F4> <esc>:call UpdateTags()<CR>
 noremap <F5> <esc>
 noremap <F6> <esc>
 noremap <F7> :bp<cr>
