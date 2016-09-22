@@ -18,4 +18,7 @@ cp bash_profile ~/.bash_profile
 # tmux conf
 cp tmux.conf ~/.tmux.conf
 
+# gdb init
+cp gdbinit ~/.gdbinit
+
 exit;
