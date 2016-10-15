@@ -8,6 +8,7 @@
 " \note Be attention: don't use map.Because map is recursion 
 
 
+set term=screen
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
 "
@@ -134,9 +135,9 @@ set sessionoptions+=sesdir
 " noremap
 "
 "
-noremap <F1> <esc>:vi ~/.vim/plugin/my.vim<CR>
-noremap <F2> <esc>
-noremap <F3> <esc>
+noremap <F1> <esc>:A<CR>
+noremap <F2> <esc>:cn<CR>
+noremap <F3> <esc>:cp<CR>
 noremap <F4> <esc>:call UpdateTags()<CR>
 noremap <F5> <esc>
 noremap <F6> <esc>
