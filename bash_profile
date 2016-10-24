@@ -18,7 +18,7 @@ alias tt='tmux -2 attach-session -t 0'
 alias tl='tmux -2 list-session'
 alias tmux='tmux -2'
 alias rm='trash '
-alias trm='/usr/bin/rm -rf '
+alias trm='/usr/bin/rm '
 export EDITOR="vim"
 ulimit -c unlimited
 
