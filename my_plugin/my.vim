@@ -62,7 +62,8 @@ function! DefineHeadFile()
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineCppFile()
-    call setline( 11, "#include \"".expand("%:t:r").".h\"" )
+    silent execute ":normal! G$"
+	call setline( line("."), "#include \"".expand("%:t")."\"" )
     silent execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
