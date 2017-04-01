@@ -7,7 +7,6 @@
 " \note code comments explains code of next line.
 " \note Be attention: don't use map.Because map is recursion 
 
-
 set term=screen
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle
@@ -46,37 +45,26 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/molokai'
 "Plugin 'vim-scripts/vcscommand.vim'
 
-"
-" Vundle
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype on
+
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " my variables
 "
 "
+
+run plugin/my.vim
+
+filetype on
+filetype plugin on
+
+syntax on                  " syntax hightlighting.
+
 let mapleader = "-"
 let maplocalleader = ","
 
 let g:mIsIDE=0
-"
-" my variables
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" header
-"
-run plugin/my.vim
-
-syntax on                  " syntax hightlighting.
-
-filetype plugin on
-"
-" header
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set 
-"
 set number
 set wrap
 set laststatus=2           
@@ -91,9 +79,9 @@ set tabstop=4
 
 " encodings
 set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-" 需要使用GBK时 使用cp936. 但通常而言不推荐。
-"set encoding=cp936
 set encoding=utf-8
+"set fileencoding=cp936
+set fileencoding=utf-8
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 
@@ -121,15 +109,11 @@ set nocp
 " help iskeyword
 set iskeyword+=_,$,@,%,#,-
 
-
 " set option of session.
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
-
-"
-"
-" set
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " noremap
@@ -179,9 +163,6 @@ nnoremap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-
-"
-" nnoremap
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -189,9 +170,6 @@ nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 " inoremap
 "
 inoremap jk <esc> 
-
-"
-" inoremap
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -199,8 +177,6 @@ inoremap jk <esc>
 " vnoremap
 "
 vnoremap jk <esc> 
-"
-" vnoremap
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -229,19 +205,13 @@ augroup C_and_CPP_Group
     autocmd BufNewFile *.hpp,*.h execute ":call DefineHeadFile()"
     autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
 
-    "autocmd FileType c,cpp :iabbrev if if(){<CR>;<CR>}<esc>kk0f(a
     "autocmd FileType c,cpp :iabbrev if( if(){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev for for(){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev for( for(){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev while while(){<CR>;<CR>}<esc>kk0f(a
+    "autocmd FileType c,cpp :iabbrev for( for(auto){<CR>;<CR>}<esc>kk0f(a
     "autocmd FileType c,cpp :iabbrev while( while(){<CR>;<CR>}<esc>kk0f(a
     "autocmd FileType c,cpp :iabbrev printf printf("");<esc>0f"a
     autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
     autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main
 augroup END	
-
-"
-" augroup
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,30 +221,7 @@ augroup END
 "set cscopequickfix=s-,c-,d-,i-,t-,e-
 " used to add cscope.out
 "set nocscopeverbose
-"
-" plugin : cscope
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin : minibufexplorerpp
-"
-" MiniBufExplorer
-" Settings(it is used to solve error of many window.
-"let g:miniBufExplorerMoreThanOne = 0
-" C-Tab <- | C-S-Tab ->
-"let g:miniBufExplMapCTabSwitchBufs=1
-" C-hjkl
-"let g:miniBufExplMapWindowNavVim=1
-" C-'->/<-'
-"let g:miniBufExplMapWindowNavArrows=1
-" Add Winmanager
-"let g:winManagerWindowLayout='FileExplorer'
-
-"
-" plugin : minibufexplorerpp
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin : molokai
@@ -284,8 +231,6 @@ if !has('gui_running')
 endif
 colorscheme molokai
 set laststatus=2
-"
-" plugin : molokai
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
