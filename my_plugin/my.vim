@@ -74,7 +74,9 @@ function! UpdateCscopeInfo()
 endfunction
 
 function! UpdateTags()
-	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl tags "
+	silent! execute "! /usr/bin/rm -rf tags"
+	silent! execute "! touch tags"
+	silent! execute "! find . -iname '*.c' -or -iname '*.cpp' -or -iname '*.hpp' -or -iname '*.h' | xargs ctags --c++-kinds=+p --fields=+iaS --extra=+q --langmap=c++:+.inl -a tags "
 endfunction
 
 

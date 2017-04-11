@@ -27,23 +27,25 @@ call vundle#rc()
 Bundle 'zheng39562/vimplugin'
 Bundle 'L9'  
 Bundle 'A.vim'
-"Bundle 'minibufexplorerpp'
-Bundle 'kien/ctrlp.vim'
-"Plugin 'tacahiroy/ctrlp-funky'
-"Plugin 'itchyny/lightline.vim'
-"Plugin 'hallison/vim-markdown'
 Bundle 'scrooloose/nerdtree'
-"Plugin 'jiangmiao/auto-pairs'
-"Plugin 'ervandew/supertab'
-"Plugin 'kshenoy/vim-signature'
-"Plugin 'majutsushi/tagbar'
-"Plugin 'honza/vim-snippets'
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
-"Plugin 'vim-scripts/OmniCppComplete'
 Bundle 'vim-scripts/molokai'
-"Plugin 'vim-scripts/vcscommand.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'vim-scripts/ctrlp-funky'
+Bundle 'vim-scripts/gdbmgr'
+Bundle 'vim-syntastic/syntastic'
+"Bundle 'itchyny/lightline.vim'
+"Bundle 'hallison/vim-markdown'
+"Bundle 'jiangmiao/auto-pairs'
+"Bundle 'kshenoy/vim-signature'
+"Bundle 'majutsushi/tagbar'
+"Bundle 'honza/vim-snippets'
+"Bundle 'MarcWeber/vim-addon-mw-utils'
+"Bundle 'tomtom/tlib_vim'
+"Bundle 'garbas/vim-snipmate'
+"Bundle 'vim-scripts/OmniCppComplete'
+"Bundle 'vim-scripts/vcscommand.vim'
+"Bundle 'minibufexplorerpp'
+"Bundle 'ervandew/supertab'
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -52,7 +54,6 @@ Bundle 'vim-scripts/molokai'
 " my variables
 "
 "
-
 run plugin/my.vim
 
 filetype on
@@ -123,7 +124,7 @@ noremap <F1> <esc>:A<CR>
 noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
 noremap <F4> <esc>:call UpdateTags()<CR>
-noremap <F5> <esc>
+noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
 noremap <F6> <esc>
 noremap <F7> :bp<cr>
 noremap <F8> :bn<cr>
@@ -231,6 +232,15 @@ if !has('gui_running')
 endif
 colorscheme molokai
 set laststatus=2
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin : ctrlp-funky
+"
+let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_funky_syntax_highlight = 1
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

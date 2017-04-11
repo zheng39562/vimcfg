@@ -19,9 +19,11 @@ alias tl='tmux -2 list-session'
 alias tmux='tmux -2'
 alias rm='trash '
 alias trm='/usr/bin/rm '
+alias cds='cd ~/code'
 export EDITOR="vim"
 ulimit -c unlimited
 
 
 echo "Initialize bash_profile"
 echo bash_profile Initialization!
+
