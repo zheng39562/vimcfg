@@ -63,7 +63,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! DefineCppFile()
     silent execute ":normal! G$"
-	call setline( line("."), "#include \"".expand("%:t")."\"" )
+	call setline( line("."), "#include \"".expand("%:t:r").".h\"" )
     silent execute ":normal! G$"
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
