@@ -125,7 +125,7 @@ noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
 noremap <F4> <esc>:call UpdateTags()<CR>
 noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
-noremap <F6> <esc>
+noremap <F6> <esc>:CtrlPMRU<CR>
 noremap <F7> :bp<cr>
 noremap <F8> :bn<cr>
 noremap <F9> <esc>:NERDTreeToggle<CR>
