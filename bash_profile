@@ -14,6 +14,7 @@ trash()
 export LC_ALL="zh_CN.UTF-8"
 export LANG="zh_CN.UTF-8"
 export TERM="linux"
+export PATH=$PATH:~/my_script/
 alias tt='tmux -2 attach-session -t 0'
 alias tl='tmux -2 list-session'
 alias tmux='tmux -2'

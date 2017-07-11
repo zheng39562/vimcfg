@@ -113,6 +113,9 @@ set iskeyword+=_,$,@,%,#,-
 " set option of session.
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
+
+" set default tags.
+set tags+=~/base_include.tags
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

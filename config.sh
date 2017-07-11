@@ -22,4 +22,7 @@ cp tmux.conf ~/.tmux.conf
 # gdb init
 cp gdbinit ~/.gdbinit
 
+# copy shell(python) script.
+cp -rf my_script ~/
+
 exit;
