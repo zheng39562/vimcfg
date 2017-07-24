@@ -26,3 +26,4 @@ cp gdbinit ~/.gdbinit
 cp -rf my_script ~/
 
 exit;
+

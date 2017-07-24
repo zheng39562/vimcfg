@@ -3,3 +3,4 @@
 	* yum install devtoolset-4-toolchain -y
 	scl enable devtoolset-4 bash
 	gcc --version
+
