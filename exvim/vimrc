@@ -1,4 +1,175 @@
 "/////////////////////////////////////////////////////////////////////////////
+"  my vim config. by zhengjm 2017/07/29
+"/////////////////////////////////////////////////////////////////////////////
+" \file vimrc config file.
+"
+" \author zheng39562@163.com
+" \version: 1.0.0
+"
+" \note I use block to split settings.Example:coding settings only set syntax of coding.
+" \note code comments explains code of next line.
+" \note Be attention: don't use map.Because map is recursion
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" my variables
+run plugin/my.vim
+
+filetype on
+filetype plugin on
+syntax on
+
+let mapleader = "-"
+let maplocalleader = ","
+
+let g:mIsIDE=0
+
+set term=screen
+set number
+
+" shiftwidth,tab,...
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" encodings
+set fileencodings=utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set encoding=utf-8
+"set fileencoding=cp936
+set fileencoding=utf-8
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
+
+" statusline: file name,type,path and number of line.
+set statusline =FileName:%f\ \ 
+set statusline +=FileType:%y\ \ 
+set statusline +=Line:\ %l/%L\ \ 
+set statusline +=FilePath:%.25F
+
+set autoread
+set autowrite
+set nobackup
+set noswapfile
+set clipboard+=unnamed
+set confirm
+set history=1000
+set linespace=0
+
+set completeopt=menu,longest
+set autoindent
+set cindent
+set noexpandtab
+set smarttab
+set nocp
+" help iskeyword
+set iskeyword+=_,$,@,%,#,-
+
+" set option of session.
+set sessionoptions-=curdir
+set sessionoptions+=sesdir
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" noremap
+"
+"
+noremap <F1> <esc>:A<CR>
+noremap <F2> <esc>:cn<CR>
+noremap <F3> <esc>:cp<CR>
+"noremap <F4> <esc>:call UpdateTags()<CR> " conflict with exvim in ~/.vimrc.plugins. line 103 
+noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
+noremap <F6> <esc>:CtrlPMRU<CR>
+noremap <F7> :bp<cr>
+noremap <F8> :bn<cr>
+noremap <F9> <esc>:NERDTreeToggle<CR>
+noremap <F10> <esc>:EXProjectToggle<CR>
+"noremap <F11> <esc>:call UpdateTags()<CR> " conflict with exvim in ~/.vimrc.plugins. line 315
+noremap <F12> <esc>:NERDTreeToggle<CR>
+
+noremap <leader>q <esc>:wqa<cr>
+
+nnoremap <leader>/ :nohl<CR>
+
+nnoremap <leader>ev : vi $MYVIMRC<cr>
+nnoremap <leader>sv : source $MYVIMRC<cr>
+nnoremap <leader>c <esc>viwy
+
+"nnoremap <c-h> <c-w>h
+"nnoremap <c-j> <c-w>j
+"nnoremap <c-k> <c-w>k
+"nnoremap <c-l> <c-w>l " conflict with exvim in ~/.vimrc.plugins. line 28 and 29
+
+nnoremap <leader>re <esc>viwpviwy
+nnoremap <leader>p <esc>p
+
+""""""" cscope
+nnoremap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <leader>fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+" noremap
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" inoremap
+"
+inoremap jk <esc>
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vnoremap
+"
+vnoremap jk <esc> 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" augroup
+"
+augroup Global_settings
+	autocmd!
+    autocmd InsertLeave * se nocul
+    autocmd InsertEnter * se cul
+
+	autocmd VimEnter * call Initialization()
+augroup END
+
+augroup SetMyFileType
+	autocmd!
+    autocmd BufNewFile,BufRead (*.(c|h|hpp)) setfiletype=corplus
+augroup END
+
+augroup C_and_CPP_Group
+	autocmd!
+    "autocmd BufNewFile,BufRead *.c,*.h setfiletype c
+    autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp setfiletype cpp
+    " SetTitle function: Add file contents automatically
+    autocmd BufNewFile *.hpp,*.cpp,*.h,*.c execute ":call SetTitle()"
+    autocmd BufNewFile *.hpp,*.h execute ":call DefineHeadFile()"
+    autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
+
+    autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
+    autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main
+augroup END	
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugin : ctrlp-funky
+"
+let g:ctrlp_funky_matchtype = 'path'
+let g:ctrlp_extensions = ['funky']
+let g:ctrlp_funky_syntax_highlight = 1
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" end my vim config
+"/////////////////////////////////////////////////////////////////////////////
+
+"/////////////////////////////////////////////////////////////////////////////
 " basic
 "/////////////////////////////////////////////////////////////////////////////
 
