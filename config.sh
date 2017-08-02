@@ -1,10 +1,20 @@
 #! /bin/bash
 
 function EchoHelp(){
-    echo "usage : config.sh [install_type]";
+    echo "usage : config.sh [optional]";
     echo "";
     echo "Arguments :";
-    echo "    install_type          [vim] or [exvim].";
+    echo "    vim				: install vim";
+    echo "    exvim				: install exvim";
+    echo "    help-idutil		: echo idutil install manual";
+}
+
+function EchoIdutilManual(){
+	echo "cd ./exvim"
+    echo "tar -zxf idutils-4.6.tar.gz"
+    echo "cd ./idutils-4.6"
+    echo "./configure --prefix=/usr/local/bin"
+    echo "make && sudo make install install"
 }
 
 function InstallMyShell(){
@@ -39,14 +49,8 @@ function InstallVim(){
 }
 
 function InstallExvim(){
-    EXVIM_PATH = ./exvim
-
-    # tar idutils and make
-    cd ${EXVIM_PATH} 
-    tar -zxf idutils-4.6.tar.gz
-    cd ./idutils-4.6
-    ./configure --prefix=/usr/local/bin/
-    make && sudo make install install
+    cp ./vimrc ~/.vimrc
+    cp ../my_plugin/my.vim ~/.vim/plugin/
 
     # download and install exvim
     mkdir -p ~/code/exvim
@@ -55,20 +59,24 @@ function InstallExvim(){
     cd main/
     sh unix/install.sh
 
-    cp ./vimrc ~/.vimrc
-    cp ./my_plugin/my.vim ~/.vim/plugin/
-
     $(InstallMyShell);
+
+	echo "Please check mkdi is exist or not. cmd is [which mkid]";
+	echo "If it is not exist. You can input config.sh help-idutil. There is idutil install manual."
 }
 
 if [ $# -lt 1 ] ; then
-    $(EchoHelp);
+    EchoHelp;
 elif [ "$1" == "vim" ] ; then 
-    $(InstallVim);
+    InstallVim
 elif [ "$1" == "exvim" ] ; then 
-    $(InstallExvim);
+    InstallExvim
+elif [ "$1" == "help" ] ; then 
+    InstallExvim
+elif [ "$1" == "help-idutil" ] ; then 
+    EchoIdutilManual
 else
-    $(EchoHelp);
+    EchoHelp
 fi
 
 exit;
