@@ -31,8 +31,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/molokai'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'vim-scripts/ctrlp-funky'
-Bundle 'vim-scripts/gdbmgr'
 Bundle 'vim-syntastic/syntastic'
+"Bundle 'vim-scripts/gdbmgr'
 "Bundle 'itchyny/lightline.vim'
 "Bundle 'hallison/vim-markdown'
 "Bundle 'jiangmiao/auto-pairs'
@@ -120,9 +120,9 @@ set tags+=~/base_include.tags
 
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" noremap
+" mapping key 
 "
-"
+"=============================================================================
 noremap <F1> <esc>:A<CR>
 noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
@@ -137,13 +137,7 @@ noremap <F11> <esc>
 noremap <F12> <esc>:NERDTreeToggle<CR>
 
 noremap <leader>q <esc>:wqa<cr>
-"
-" noremap
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap
-"
+"=============================================================================
 nnoremap <leader>/ :nohl<CR>
 
 nnoremap <leader>ev : vi $MYVIMRC<cr>
@@ -167,22 +161,12 @@ nnoremap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" inoremap
-"
+"=============================================================================
 inoremap jk <esc> 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vnoremap
-"
+"=============================================================================
 vnoremap jk <esc> 
+"=============================================================================
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " augroup
@@ -202,29 +186,14 @@ augroup END
 
 augroup C_and_CPP_Group
 	autocmd!
-    "autocmd BufNewFile,BufRead *.c,*.h setfiletype c
     autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp setfiletype cpp
-    " SetTitle function: Add file contents automatically
     autocmd BufNewFile *.hpp,*.cpp,*.h,*.c execute ":call SetTitle()"
     autocmd BufNewFile *.hpp,*.h execute ":call DefineHeadFile()"
     autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
 
-    "autocmd FileType c,cpp :iabbrev if( if(){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev for( for(auto){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev while( while(){<CR>;<CR>}<esc>kk0f(a
-    "autocmd FileType c,cpp :iabbrev printf printf("");<esc>0f"a
     autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
     autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main
 augroup END	
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin : cscope
-"
-" used quickfix to display cscope
-"set cscopequickfix=s-,c-,d-,i-,t-,e-
-" used to add cscope.out
-"set nocscopeverbose
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,7 +205,6 @@ endif
 colorscheme molokai
 set laststatus=2
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plugin : ctrlp-funky
