@@ -87,10 +87,10 @@ set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 
 " statusline: file name,type,path and number of line.
-set statusline =FileName:%f\ \ 
-set statusline +=FileType:%y\ \ 
-set statusline +=Line:\ %l/%L\ \ 
-set statusline +=FilePath:%.25F
+set statusline = FileName:%f\ \ 
+set statusline += FileType:%y\ \ 
+set statusline += Line:\ %l/%L\ \ 
+set statusline += FilePath:%.25F
 
 set autoread
 set autowrite
@@ -123,32 +123,51 @@ set tags+=~/base_include.tags
 " mapping key 
 "
 "=============================================================================
+" switch between cpp and h
 noremap <F1> <esc>:A<CR>
+" quick window : next error
 noremap <F2> <esc>:cn<CR>
+" quick window : pre error
 noremap <F3> <esc>:cp<CR>
+"
 noremap <F4> <esc>:call UpdateTags()<CR>
+"
 noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
+"
 noremap <F6> <esc>:CtrlPMRU<CR>
+"
 noremap <F7> :bp<cr>
+"
 noremap <F8> :bn<cr>
+"
 noremap <F9> <esc>:NERDTreeToggle<CR>
+"
 noremap <F10> <esc>
+"
 noremap <F11> <esc>
+"
 noremap <F12> <esc>:NERDTreeToggle<CR>
 
+"
 noremap <leader>q <esc>:wqa<cr>
 "=============================================================================
+"
 nnoremap <leader>/ :nohl<CR>
-
+"
 nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
-nnoremap <leader>c <esc>viwy
-
+"
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-
+" window resize : base on main window
+nnoremap <s-h> :vertical resize +1<cr>
+nnoremap <s-j> :resize -1<cr>
+nnoremap <s-k> :resize +1<cr>
+nnoremap <s-l> :vertical resize -1<cr>
+" copy and paste
+nnoremap <leader>c <esc>viwy
 nnoremap <leader>re <esc>viwpviwy
 nnoremap <leader>p <esc>p
 
