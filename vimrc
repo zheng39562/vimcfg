@@ -19,12 +19,15 @@ set term=screen
 set nocompatible              " be iMproved  
 filetype off                  " required!  
 
+" rtp(runtimepath)
 set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/plugin/
 call vundle#rc()  
 
 " let Vundle manage Vundle  
 " *** Download vundle : git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 Bundle 'zheng39562/vimplugin'
+Bundle 'zheng39562/frvim'
 Bundle 'L9'  
 Bundle 'A.vim'
 Bundle 'scrooloose/nerdtree'
@@ -54,7 +57,6 @@ Bundle 'vim-syntastic/syntastic'
 " my variables
 "
 "
-run plugin/my.vim
 
 filetype on
 filetype plugin on
@@ -87,10 +89,10 @@ set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
 
 " statusline: file name,type,path and number of line.
-set statusline = FileName:%f\ \ 
-set statusline += FileType:%y\ \ 
-set statusline += Line:\ %l/%L\ \ 
-set statusline += FilePath:%.25F
+set statusline =FileName:%f\ \ 
+set statusline +=FileType:%y\ \ 
+set statusline +=Line:\ %l/%L\ \ 
+set statusline +=FilePath:%.25F
 
 set autoread
 set autowrite
@@ -100,6 +102,7 @@ set clipboard+=unnamed
 set confirm
 set history=1000
 set linespace=0
+set foldmethod=marker
 
 set completeopt=menu,longest
 set autoindent
@@ -115,7 +118,7 @@ set sessionoptions-=curdir
 set sessionoptions+=sesdir
 
 " set default tags.
-set tags+=~/base_include.tags
+" set tags+=~/base_include.tags
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -123,51 +126,32 @@ set tags+=~/base_include.tags
 " mapping key 
 "
 "=============================================================================
-" switch between cpp and h
 noremap <F1> <esc>:A<CR>
-" quick window : next error
 noremap <F2> <esc>:cn<CR>
-" quick window : pre error
 noremap <F3> <esc>:cp<CR>
-"
 noremap <F4> <esc>:call UpdateTags()<CR>
-"
 noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
-"
 noremap <F6> <esc>:CtrlPMRU<CR>
-"
 noremap <F7> :bp<cr>
-"
 noremap <F8> :bn<cr>
-"
 noremap <F9> <esc>:NERDTreeToggle<CR>
-"
 noremap <F10> <esc>
-"
 noremap <F11> <esc>
-"
 noremap <F12> <esc>:NERDTreeToggle<CR>
 
-"
 noremap <leader>q <esc>:wqa<cr>
 "=============================================================================
-"
 nnoremap <leader>/ :nohl<CR>
-"
+
 nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
-"
+nnoremap <leader>c <esc>viwy
+
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
-" window resize : base on main window
-nnoremap <s-h> :vertical resize +1<cr>
-nnoremap <s-j> :resize -1<cr>
-nnoremap <s-k> :resize +1<cr>
-nnoremap <s-l> :vertical resize -1<cr>
-" copy and paste
-nnoremap <leader>c <esc>viwy
+
 nnoremap <leader>re <esc>viwpviwy
 nnoremap <leader>p <esc>p
 
@@ -195,7 +179,7 @@ augroup Global_settings
     autocmd InsertLeave * se nocul
     autocmd InsertEnter * se cul
 
-	autocmd VimEnter * call Initialization()
+	" autocmd VimEnter * call Initialization()
 augroup END
 
 augroup SetMyFileType
@@ -203,16 +187,6 @@ augroup SetMyFileType
     autocmd BufNewFile,BufRead (*.(c|h|hpp)) setfiletype=corplus
 augroup END
 
-augroup C_and_CPP_Group
-	autocmd!
-    autocmd BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp setfiletype cpp
-    autocmd BufNewFile *.hpp,*.cpp,*.h,*.c execute ":call SetTitle()"
-    autocmd BufNewFile *.hpp,*.h execute ":call DefineHeadFile()"
-    autocmd BufNewFile *.cpp,*.c execute ":call DefineCppFile()"
-
-    autocmd FileType c,cpp :set omnifunc=ccomplete#Complete;
-    autocmd FileType c,cpp :set omnifunc=omni#cpp#complete#Main
-augroup END	
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

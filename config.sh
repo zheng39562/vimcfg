@@ -32,7 +32,6 @@ function InstallVim(){
     fi
 
     cp ./vimrc ~/.vimrc
-    cp ./my_plugin/my.vim ~/.vim/plugin/
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
     # bash_profile
@@ -50,7 +49,6 @@ function InstallVim(){
 
 function InstallExvim(){
     cp ./vimrc ~/.vimrc
-    cp ../my_plugin/my.vim ~/.vim/plugin/
 
     # download and install exvim
     mkdir -p ~/code/exvim

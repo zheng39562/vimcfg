@@ -24,7 +24,6 @@ alias cds='cd ~/code'
 export EDITOR="vim"
 ulimit -c unlimited
 
-
 echo "Initialize bash_profile"
 echo bash_profile Initialization!
 
