@@ -126,7 +126,7 @@ set sessionoptions+=sesdir
 noremap <F1> <esc>:A<CR>
 noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
-noremap <F4> 
+noremap <F4> <esc>
 noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
 noremap <F6> <esc>:CtrlPMRU<CR>
 noremap <F7> :bp<cr>
