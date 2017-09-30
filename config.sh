@@ -17,11 +17,6 @@ function EchoIdutilManual(){
     echo "make && sudo make install install"
 }
 
-function InstallMyShell(){
-    # copy shell(python) script.
-    cp -rf my_script ~/
-}
-
 function InstallVim(){
     if [ ! -f ~/.vim ] ; then 
         mkdir ~/.vim
@@ -43,8 +38,6 @@ function InstallVim(){
 
     # gdb init
     cp gdbinit ~/.gdbinit
-
-    $(InstallMyShell);
 }
 
 function InstallExvim(){
@@ -56,8 +49,6 @@ function InstallExvim(){
     git clone https://github.com/exvim/main
     cd main/
     sh unix/install.sh
-
-    $(InstallMyShell);
 
 	echo "Please check mkdi is exist or not. cmd is [which mkid]";
 	echo "If it is not exist. You can input config.sh help-idutil. There is idutil install manual."
