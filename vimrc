@@ -116,9 +116,6 @@ set iskeyword+=_,$,@,%,#,-
 " set option of session.
 set sessionoptions-=curdir
 set sessionoptions+=sesdir
-
-" set default tags.
-" set tags+=~/base_include.tags
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -129,7 +126,7 @@ set sessionoptions+=sesdir
 noremap <F1> <esc>:A<CR>
 noremap <F2> <esc>:cn<CR>
 noremap <F3> <esc>:cp<CR>
-noremap <F4> <esc>:call UpdateTags()<CR>
+noremap <F4> 
 noremap <F5> <esc>:execute 'CtrlPFunky ' . expand('<cword>')<CR>
 noremap <F6> <esc>:CtrlPMRU<CR>
 noremap <F7> :bp<cr>
@@ -141,8 +138,6 @@ noremap <F12> <esc>:NERDTreeToggle<CR>
 
 noremap <leader>q <esc>:wqa<cr>
 "=============================================================================
-nnoremap <leader>/ :nohl<CR>
-
 nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
 nnoremap <leader>c <esc>viwy
@@ -164,10 +159,6 @@ nnoremap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-"=============================================================================
-inoremap jk <esc> 
-"=============================================================================
-vnoremap jk <esc> 
 "=============================================================================
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
