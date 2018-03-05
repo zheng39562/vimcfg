@@ -142,6 +142,7 @@ nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
 nnoremap <leader>c <esc>viwy
 
+nnoremap <c-n> <c-b>
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
