@@ -38,6 +38,13 @@ function InstallVim(){
 
     # gdb init
     cp gdbinit ~/.gdbinit
+
+	# install necessary software.
+	sudo yum -y install clang-devel
+	sudo yum -y install clang
+	sudo yum -y install gcc-c++
+	sudo yum -y install tmux
+	sudo yum -y install automake
 }
 
 function InstallExvim(){
