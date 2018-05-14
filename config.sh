@@ -53,6 +53,13 @@ function InstallVim(){
 	cd ~/.vim/bundle/clang-complete/
 	make
 	make install
+
+	# install graph-easy
+	# 非完整版本，可能安装会出现问题,到时候慢慢修复.
+	sudo yum install -y perl
+	sudo yum install -y perl-CPAN*
+	cpan 
+	cpan Graph:Easy
 }
 
 function InstallExvim(){
