@@ -5,16 +5,6 @@ function EchoHelp(){
     echo "";
     echo "Arguments :";
     echo "    vim				: install vim";
-    echo "    exvim				: install exvim";
-    echo "    help-idutil		: echo idutil install manual";
-}
-
-function EchoIdutilManual(){
-	echo "cd ./exvim"
-    echo "tar -zxf idutils-4.6.tar.gz"
-    echo "cd ./idutils-4.6"
-    echo "./configure --prefix=/usr/local/bin"
-    echo "make && sudo make install install"
 }
 
 function InstallVim(){
@@ -49,43 +39,22 @@ function InstallVim(){
 
 	vim +BundleInstall +qall
 
+	# cpp regex.
+	cp ./ctrlp_funky/cpp.vim ~/.vim/bundle/ctrlp-funky/autoload/ctrlp/funky/ft/
+
 	# clang-complete vim:
 	cd ~/.vim/bundle/clang-complete/
 	make
 	make install
 
-	# install graph-easy
-	# 非完整版本，可能安装会出现问题,到时候慢慢修复.
-	sudo yum install -y perl
-	sudo yum install -y perl-CPAN*
-	cpan 
-	cpan Graph:Easy
-}
-
-function InstallExvim(){
-    cp ./vimrc ~/.vimrc
-
-    # download and install exvim
-    mkdir -p ~/code/exvim
-    cd ${EXVIM_PATH}
-    git clone https://github.com/exvim/main
-    cd main/
-    sh unix/install.sh
-
-	echo "Please check mkdi is exist or not. cmd is [which mkid]";
-	echo "If it is not exist. You can input config.sh help-idutil. There is idutil install manual."
 }
 
 if [ $# -lt 1 ] ; then
     EchoHelp;
 elif [ "$1" == "vim" ] ; then 
     InstallVim
-elif [ "$1" == "exvim" ] ; then 
-    InstallExvim
 elif [ "$1" == "help" ] ; then 
     InstallExvim
-elif [ "$1" == "help-idutil" ] ; then 
-    EchoIdutilManual
 else
     EchoHelp
 fi
