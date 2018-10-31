@@ -7,7 +7,11 @@ function EchoHelp(){
     echo "    vim				: install vim";
 }
 
-function InstallVim(){
+function buildFolder(){
+    if [ ! -f ~/other_code ] ; then 
+        mkdir ~/other_code
+    fi
+
     if [ ! -f ~/.vim ] ; then 
         mkdir ~/.vim
     fi
@@ -15,10 +19,9 @@ function InstallVim(){
     if [ ! -f ~/.vim/plugin ] ; then 
         mkdir -p ~/.vim/plugin
     fi
+}
 
-    cp ./vimrc ~/.vimrc
-    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-
+function prepareWork(){
     # bash_profile
     cp bash_profile ~/.bash_profile
     source ~/.bash_profile
@@ -30,23 +33,75 @@ function InstallVim(){
     cp gdbinit ~/.gdbinit
 
 	# install necessary software.
-	sudo yum -y install vim
 	sudo yum -y install clang-devel
 	sudo yum -y install clang
 	sudo yum -y install gcc-c++
 	sudo yum -y install tmux
 	sudo yum -y install automake
+	sudo yum -y install ack
+}
+
+function InstallVimAndPlugin(){
+	#======================================================
+	# vim install(vim8.x)
+
+	# support vim
+	sudo yum -y install lua lua-devel luajit luajit-devel ctags git python python-devel python3 python3-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
+
+	cd ~/other_code
+	git clone https://github.com/vim/vim.git
+	cd ./vim
+
+	#Python3Dir=`sudo find /usr -name "config-3*gnu" | grep "python3"`
+	#Python3Command=`sudo find /usr -name "python3[0-9]"`
+	# TODO : python command 和 python dir 需要手工设置。后续考虑使用python生成shell的方式来解决自动化问题.
+	# 核心问题是shell里面使用变量好像代替参数会有问题。 如果这个问题本身能解决，也可以不使用构建的方式.
+	make distclean
+	./configure --with-features=huge \
+		--enable-multibyte \
+		--enable-rubyinterp=yes \
+		--enable-python3interp=yes \
+		--with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu \
+		--with-python3-command=python36 \
+		--enable-perlinterp=yes \
+		--enable-luainterp=yes \
+		--enable-gui=gtk2 \
+		--enable-cscope \
+		--prefix=/usr/local
+
+	make VIMRUNTIMEDIR=/usr/local/share/vim/vim81 && sudo make install
+
+    cp ./vimrc ~/.vimrc
+	git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugin/vim-plug
 
 	vim +BundleInstall +qall
 
 	# cpp regex.
 	cp ./ctrlp_funky/cpp.vim ~/.vim/bundle/ctrlp-funky/autoload/ctrlp/funky/ft/
-
 	# clang-complete vim:
-	cd ~/.vim/bundle/clang-complete/
-	make
-	make install
+	#cd ~/.vim/bundle/clang-complete/
+	#make
+	#make install
+}
 
+function InstallUniversalCtags(){
+	cd ~/other_code
+	git clone https://github.com/universal-ctags/ctags.git
+
+	cd ./ctags
+	./autogen.sh
+	./configure
+	make && sudo make install
+}
+
+function InstallVim(){
+	buildFolder
+	
+	prepareWork
+
+	InstallUniversalCtags
+
+	InstallVim
 }
 
 if [ $# -lt 1 ] ; then
