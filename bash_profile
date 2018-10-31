@@ -21,6 +21,7 @@ alias tmux='tmux -2'
 alias rm='trash '
 alias trm='/usr/bin/rm '
 alias cds='cd ~/code'
+alias vi='/usr/local/bin/vim '
 export EDITOR="vim"
 ulimit -c unlimited
 
