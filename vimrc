@@ -24,32 +24,20 @@ Plug 'vim-scripts/L9'
 Plug 'zheng39562/frvim'
 Plug 'vim-scripts/A.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/molokai'
-Plug 'Yggdroot/LeaderF'
-Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/molokai'	" 语法高亮
+Plug 'Yggdroot/LeaderF'	" ctrlp + ctrlp-funky
+Plug 'mileszs/ack.vim'	" 全局内容搜索.
 Plug 'ludovicchabant/vim-gutentags'	" tag 后台异步更新
 Plug 'mhinz/vim-signify'	 " git diff 工具.
+Plug 'maralla/completor.vim'	" 补全
+Plug 'itchyny/lightline.vim'	" 状态栏
+Plug 'hallison/vim-markdown'	" markdownn 高亮
+Plug 'easymotion/vim-easymotion'	" 快速跳转。真好玩的插件，惊了.
+"vim-javacomplete2	" java补全
 
 "Plug 'AsyncRun'	" 异步编译.
 "Plug 'w0rp/ale'	" 动态检查
-"vim-multiple-cursors
-"clang_complete
-"vim-javacomplete2
-"Plug 'vim-scripts/gdbmgr'
-"Plug 'itchyny/lightline.vim'
-"Plug 'hallison/vim-markdown'
-"Plug 'jiangmiao/auto-pairs'
-"Plug 'kshenoy/vim-signature'
-"Plug 'honza/vim-snippets'
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
-"Plug 'vim-scripts/OmniCppComplete'
-"Plug 'vim-scripts/vcscommand.vim'
-"Plug 'ervandew/supertab'
-"vim-gitgutter
-"EasyMotion
-"completor.vim
+"vim-multiple-cursors " 多光标 是否好用待确认
 
 call plug#end()
 
@@ -94,12 +82,6 @@ set encoding=utf-8
 set fileencoding=utf-8
 set langmenu=zh_CN.UTF-8
 language message zh_CN.UTF-8
-
-" statusline: file name,type,path and number of line.
-set statusline =FileName:%f\ \ 
-set statusline +=FileType:%y\ \ 
-set statusline +=Line:\ %l/%L\ \ 
-set statusline +=FilePath:%.25F
 
 set autoread
 set autowrite
@@ -146,7 +128,6 @@ noremap <leader>q <esc>:wqa<cr>
 "=============================================================================
 nnoremap <leader>ev : vi $MYVIMRC<cr>
 nnoremap <leader>sv : source $MYVIMRC<cr>
-nnoremap <leader>c <esc>viwy
 
 nnoremap <c-n> <c-b>
 nnoremap <c-h> <c-w>h
@@ -154,6 +135,7 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
+nnoremap <leader>c <esc>viwy
 nnoremap <leader>re <esc>viwpviwy
 nnoremap <leader>p <esc>p
 
@@ -235,6 +217,15 @@ let g:Lf_StlColorscheme = 'powerline'
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Completor
+"
+let g:completor_clang_binary = '/usr/bin/clang'
+
+inoremap <c-n> <Plug>CompletorCppJumpToPlaceholder
+
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set alt key.
