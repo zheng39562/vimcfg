@@ -46,7 +46,7 @@ function InstallVimAndPlugin(){
 	# vim install(vim8.x)
 
 	# support vim
-	sudo yum -y install lua lua-devel luajit luajit-devel ctags git python python-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
+	sudo yum -y install lua lua-devel luajit luajit-devel git python python-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
 
 	cd ~/other_code
 	git clone https://github.com/vim/vim.git
