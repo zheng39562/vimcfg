@@ -46,7 +46,7 @@ function InstallVimAndPlugin(){
 	# vim install(vim8.x)
 
 	# support vim
-	sudo yum -y install lua lua-devel luajit luajit-devel ctags git python python-devel python3 python3-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
+	sudo yum -y install lua lua-devel luajit luajit-devel ctags git python python-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
 
 	cd ~/other_code
 	git clone https://github.com/vim/vim.git
@@ -74,14 +74,7 @@ function InstallVimAndPlugin(){
     cp ./vimrc ~/.vimrc
 	git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugin/vim-plug
 
-	vim +BundleInstall +qall
-
-	# cpp regex.
-	cp ./ctrlp_funky/cpp.vim ~/.vim/bundle/ctrlp-funky/autoload/ctrlp/funky/ft/
-	# clang-complete vim:
-	#cd ~/.vim/bundle/clang-complete/
-	#make
-	#make install
+	vim +PlugInstall +qall
 }
 
 function InstallUniversalCtags(){
@@ -94,10 +87,16 @@ function InstallUniversalCtags(){
 	make && sudo make install
 }
 
+function InstallPython3(){
+	#yum install -y python3 python3-devel 
+}
+
 function InstallVim(){
 	buildFolder
 	
 	prepareWork
+
+	InstallPython3
 
 	InstallUniversalCtags
 
@@ -109,7 +108,7 @@ if [ $# -lt 1 ] ; then
 elif [ "$1" == "vim" ] ; then 
     InstallVim
 elif [ "$1" == "help" ] ; then 
-    InstallExvim
+    EchoHelp
 else
     EchoHelp
 fi
