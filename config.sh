@@ -88,7 +88,24 @@ function InstallUniversalCtags(){
 }
 
 function InstallPython3(){
-	#yum install -y python3 python3-devel 
+	# pre install
+	sudo yum install -y zlib* libffi-devel
+
+	mkdir ~/other_code
+	cd ~/other_code
+	wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tar.xz
+
+	xz -d Python-3.7.1.tar.xz
+	tar -xvf Python-3.7.1.tar
+	cd Python-3.7.1
+
+	./configure --prefix=/usr/local/python3/
+
+	make
+
+	sudo make install
+
+	sudo ln -s /usr/local/python3/bin/python3 /usr/bin/python3
 }
 
 function InstallVim(){
