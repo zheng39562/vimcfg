@@ -72,7 +72,11 @@ function InstallVimAndPlugin(){
 	make VIMRUNTIMEDIR=/usr/local/share/vim/vim81 && sudo make install
 
     cp ./vimrc ~/.vimrc
-	git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugin/vim-plug
+
+	mkdir ~/.vim/autoload
+	# autoload才能自动加载plug插件。否则需要手动复制.
+	# TODO: 找到可以设置加载插件的方式(不过关系不大看情况做吧).
+	git clone https://github.com/junegunn/vim-plug.git ~/.vim/autoload/vim-plug
 
 	vim +PlugInstall +qall
 }

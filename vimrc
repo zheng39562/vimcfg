@@ -6,6 +6,10 @@
 " \note I use block to split settings.Example:coding settings only set syntax of coding.
 " \note code comments explains code of next line.
 " \note Be attention: don't use map.Because map is recursion 
+"
+
+" 强制指定环境变量，避免多版本vim指引错误 
+let $VIMRUNTIME = "/usr/local/share/vim/vim81"
 
 set term=screen
 
