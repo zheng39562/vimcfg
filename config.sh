@@ -1,5 +1,9 @@
 #! /bin/bash
 
+# TODO: 
+#	自动安装识别.
+#	使用python作为安装脚本(shell也继续使用.)
+
 function EchoHelp(){
     echo "usage : config.sh [optional]";
     echo "";
@@ -103,7 +107,7 @@ function InstallPython3(){
 	tar -xvf Python-3.7.1.tar
 	cd Python-3.7.1
 
-	./configure --prefix=/usr/local/python3/
+	./configure --prefix=/usr/local/ --enable-shared --enable-unicode=ucs4
 
 	make
 

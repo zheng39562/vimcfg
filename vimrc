@@ -6,10 +6,6 @@
 " \note I use block to split settings.Example:coding settings only set syntax of coding.
 " \note code comments explains code of next line.
 " \note Be attention: don't use map.Because map is recursion 
-"
-
-" 强制指定环境变量，避免多版本vim指引错误 
-let $VIMRUNTIME = "/usr/local/share/vim/vim81"
 
 set term=screen
 
@@ -32,11 +28,13 @@ Plug 'vim-scripts/molokai'	" 语法高亮
 Plug 'Yggdroot/LeaderF'	" ctrlp + ctrlp-funky
 Plug 'mileszs/ack.vim'	" 全局内容搜索.
 Plug 'ludovicchabant/vim-gutentags'	" tag 后台异步更新
-Plug 'mhinz/vim-signify'	 " git diff 工具.
+Plug 'tpope/vim-fugitive'	 " git command.
+Plug 'mhinz/vim-signify'	 " git diff.
 Plug 'maralla/completor.vim'	" 补全
 Plug 'itchyny/lightline.vim'	" 状态栏
 Plug 'hallison/vim-markdown'	" markdownn 高亮
 Plug 'easymotion/vim-easymotion'	" 快速跳转。真好玩的插件，惊了.
+
 "vim-javacomplete2	" java补全
 
 "Plug 'AsyncRun'	" 异步编译.
@@ -117,12 +115,13 @@ set sessionoptions+=sesdir
 "
 "=============================================================================
 noremap <F1> <esc>:A<CR>
-noremap <F2> <esc>:cn<CR>
-noremap <F3> <esc>:cp<CR>
-noremap <F4> <esc>:LeaderfFunction!<CR>
-noremap <F5> <esc>:Ack! 
-noremap <F7> :bp<cr>
-noremap <F8> :bn<cr>
+noremap <F2> <esc>:Ack! 
+noremap <F3> <esc>:LeaderfMru<CR>
+noremap <F4> <esc>:LeaderfFunction<CR>
+noremap <F5> <esc>:cn<CR>
+noremap <F6> <esc>:cp<CR>
+noremap <F7> <esc>
+noremap <F8> <esc>SignifyDiff<CR>
 noremap <F9> <esc>:NERDTreeToggle<CR>
 noremap <F10> <esc>
 noremap <F11> <esc>
@@ -143,16 +142,8 @@ nnoremap <leader>c <esc>viwy
 nnoremap <leader>re <esc>viwpviwy
 nnoremap <leader>p <esc>p
 
-""""""" cscope 
-nnoremap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <leader>fi :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-"=============================================================================
+nnoremap <leader>gd :SignifyDiff<CR>
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -193,7 +184,9 @@ let g:ack_default_options = " --ignore-file=match:.tags"
 " plugin : gutentags.vim and set tags (support universal ctags)
 "
 set tags=./.tags;,.tags
-"
+
+let g:gutentags_ctags_exclude = ['./build']
+
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project' ]
 
 let g:gutentags_ctags_tagfile = '.tags'
@@ -228,8 +221,14 @@ let g:completor_clang_binary = '/usr/bin/clang'
 
 inoremap <c-n> <Plug>CompletorCppJumpToPlaceholder
 
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"
+
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set alt key.
