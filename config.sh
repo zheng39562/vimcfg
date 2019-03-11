@@ -50,7 +50,7 @@ function InstallVimAndPlugin(){
 	# vim install(vim8.x)
 
 	# support vim
-	sudo yum -y install lua lua-devel luajit luajit-devel git python python-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed
+	sudo yum -y install lua lua-devel luajit luajit-devel git python36 python36-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed ncurses-devel
 
 	cd ~/other_code
 	git clone https://github.com/vim/vim.git
@@ -75,12 +75,13 @@ function InstallVimAndPlugin(){
 
 	make VIMRUNTIMEDIR=/usr/local/share/vim/vim81 && sudo make install
 
-    cp ./vimrc ~/.vimrc
+	#cp ./vimrc ~/.vimrc
 
-	mkdir ~/.vim/autoload
 	# autoload才能自动加载plug插件。否则需要手动复制.
 	# TODO: 找到可以设置加载插件的方式(不过关系不大看情况做吧).
+	mkdir ~/.vim/autoload
 	git clone https://github.com/junegunn/vim-plug.git ~/.vim/autoload/vim-plug
+	cp ~/.vim/autoload/vim-plug/plug.vim ~/.vim/autoload/
 
 	vim +PlugInstall +qall
 }
@@ -121,11 +122,7 @@ function InstallVim(){
 	
 	prepareWork
 
-	InstallPython3
-
-	InstallUniversalCtags
-
-	InstallVim
+	InstallVimAndPlugin
 }
 
 if [ $# -lt 1 ] ; then
@@ -134,6 +131,10 @@ elif [ "$1" == "vim" ] ; then
     InstallVim
 elif [ "$1" == "help" ] ; then 
     EchoHelp
+elif [ "$1" == "ctags" ] ; then 
+    InstallUniversalCtags
+elif [ "$1" == "python" ] ; then 
+	InstallPython3
 else
     EchoHelp
 fi
