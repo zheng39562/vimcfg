@@ -50,40 +50,33 @@ function InstallVimAndPlugin(){
 	# vim install(vim8.x)
 
 	# support vim
-	sudo yum -y install lua lua-devel luajit luajit-devel git python36 python36-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed ncurses-devel
+#	sudo yum -y install lua lua-devel luajit luajit-devel git python36 python36-devel tcl-devel perl perl-devel perl-ExtUtils-ParseXS perl-ExtUtils-XSpp perl-ExtUtils-CBuilder perl-ExtUtils-Embed ncurses-devel
 
-	cd ~/other_code
-	git clone https://github.com/vim/vim.git
-	cd ./vim
+#	cd ~/other_code
+#	git clone https://github.com/vim/vim.git
+#	cd ./vim
 
 	#Python3Dir=`sudo find /usr -name "config-3*gnu" | grep "python3"`
 	#Python3Command=`sudo find /usr -name "python3[0-9]"`
 	# TODO : python command 和 python dir 需要手工设置。后续考虑使用python生成shell的方式来解决自动化问题.
 	# 核心问题是shell里面使用变量好像代替参数会有问题。 如果这个问题本身能解决，也可以不使用构建的方式.
-	make distclean
-	./configure --with-features=huge \
-		--enable-multibyte \
-		--enable-rubyinterp=yes \
-		--enable-python3interp=yes \
-		--with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu \
-		--with-python3-command=python36 \
-		--enable-perlinterp=yes \
-		--enable-luainterp=yes \
-		--enable-gui=gtk2 \
-		--enable-cscope \
-		--prefix=/usr/local
 
-	make VIMRUNTIMEDIR=/usr/local/share/vim/vim81 && sudo make install
+#	cd ~/other_code/vim-8.2.0232/
 
-	#cp ./vimrc ~/.vimrc
+#	make distclean
+#	./configure --with-features=huge \ --enable-multibyte \ --enable-rubyinterp=yes \ --enable-python3interp=yes \ --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu \ --with-python3-command=python3.6 \ --enable-perlinterp=yes \ --enable-luainterp=yes \ --enable-gui=gtk2 \ --enable-cscope \ --prefix=/usr/local
+
+	#make VIMRUNTIMEDIR=/usr/local/share/vim/vim81 && sudo make install
+
+	cp ./vimrc ~/.vimrc
 
 	# autoload才能自动加载plug插件。否则需要手动复制.
 	# TODO: 找到可以设置加载插件的方式(不过关系不大看情况做吧).
-	mkdir ~/.vim/autoload
+	#mkdir ~/.vim/autoload
 	git clone https://github.com/junegunn/vim-plug.git ~/.vim/autoload/vim-plug
 	cp ~/.vim/autoload/vim-plug/plug.vim ~/.vim/autoload/
 
-	vim +PlugInstall +qall
+	#vim +PlugInstall +qall
 }
 
 function InstallUniversalCtags(){
@@ -118,11 +111,11 @@ function InstallPython3(){
 }
 
 function InstallVim(){
-	buildFolder
+#	buildFolder
 	
 	prepareWork
 
-	InstallVimAndPlugin
+	#InstallVimAndPlugin
 }
 
 if [ $# -lt 1 ] ; then
